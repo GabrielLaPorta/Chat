@@ -43,3 +43,8 @@ html, body {
     border: 1px solid #ddd;
     padding: 20px;
   }
+  h1{
+    color: #069;
+    margin-top: 80px;
+    text-align:center;
+  }
