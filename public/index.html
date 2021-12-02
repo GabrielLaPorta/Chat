@@ -18,7 +18,7 @@
         <button type="submit">Enviar</button>
     </form>
     <script type="text/javascript">
-        const socket = io('http://localhost:5000');
+        const socket = io('https://chat-do-gabriel.herokuapp.com/' || 'http://localhost:5000');
 
         $('input[name=username]').val(localStorage.getItem('username'))
 
