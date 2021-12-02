@@ -20,6 +20,8 @@
     <script type="text/javascript">
         const socket = io('http://localhost:5000');
 
+        $('input[name=username]').val(localStorage.getItem('username'))
+
         function renderMessage(message) {
             $('.messages').append('<div class="message"><strong>'+ message.author +'</strong>: '+ message.message +'</div>')
         }
@@ -29,7 +31,7 @@
 
             let author = $('input[name=username]').val();
             let message = $('input[name=message]').val();
-
+            localStorage.setItem('username', author);
             if(author.length && message.length){
                 let messageObject = {
                     author: author,
@@ -39,6 +41,7 @@
 
                 socket.emit('sendMessage', messageObject);
             }
+            $('input[name=message]').val('')
         });
 
         socket.on('previousMessages', (messages) =>{
