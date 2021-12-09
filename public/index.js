@@ -152,7 +152,9 @@ function renderRoom(room) {
       <span class="name">${room.name}</span>
       <span class="time">2:09 PM</span>
       <span class="preview">${
-        room.messages.length > 0 ? room.messages[0].text : ""
+        room.messages.length > 0
+          ? room.messages[room.messages.length - 1].text
+          : ""
       }...</span>
     </li>
   `);
