@@ -1,6 +1,6 @@
 const id = localStorage.getItem("socket");
 const socket = io(
-  /* "https://chat-do-gabriel.herokuapp.com/" || */ "http://localhost:5000",
+  "https://chat-do-gabriel.herokuapp.com/" || "http://localhost:5000",
   {
     query: {
       id: id ? id : "",
