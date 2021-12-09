@@ -109,6 +109,11 @@ io.on("connection", (socket) => {
     socket.join(roomId);
   });
 
+  socket.on("exit", (username) => {
+    users = users.filter((user) => user.username !== username);
+    socket.broadcast.emit("active-users", users);
+  });
+
   socket.on("send-message", (data) => {
     const { roomId, message } = data;
     for (const u in users) {

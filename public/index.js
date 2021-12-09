@@ -1,6 +1,6 @@
 const id = localStorage.getItem("socket");
 const socket = io(
-  "https://chat-do-gabriel.herokuapp.com/" || "http://localhost:5000",
+  /* "https://chat-do-gabriel.herokuapp.com/" || */ "http://localhost:5000",
   {
     query: {
       id: id ? id : "",
@@ -86,12 +86,23 @@ $("#message").submit((event) => {
   }
 });
 
+$("#sair").click(function () {
+  socket.emit("exit", localStorage.getItem("username"));
+  localStorage.clear();
+  document.location.reload();
+});
+
 function onInit() {
   if (localStorage.getItem("username")) {
+    $("#my-username").empty();
+    $("#my-username").append(
+      `<strong>${localStorage.getItem("username")}</strong>`
+    );
     $(".container-form ").removeClass("display-block").addClass("display-none");
     $(".container").removeClass("display-none").addClass("display-block");
     $(".right .top").removeClass("display-block").addClass("display-none");
     $(".right .write").removeClass("display-block").addClass("display-none");
+    $("#sair").removeClass("display-none").addClass("display-block");
     let rooms = localStorage.getItem("rooms");
     if (rooms) {
       rooms = JSON.parse(rooms);
@@ -105,6 +116,7 @@ function onInit() {
   } else {
     $(".container-form").removeClass("display-none").addClass("display-block");
     $(".container").removeClass("display-block").addClass("display-none");
+    $("#sair").removeClass("display-block").addClass("display-none");
   }
 }
 function setEvents() {

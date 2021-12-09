@@ -335,6 +335,13 @@
 	margin-left: 1%;
 	height: 100px;
 }
+#sair{
+	margin-top: 8px;
+}
+#my-username {
+	margin-top: 18px;
+	font-size: medium;
+}
 /*  @keyframes slideFromLeft {
 	 0% {
 		 margin-left: -200px;
