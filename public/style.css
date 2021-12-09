@@ -14,9 +14,6 @@
 	 text-rendering: optimizeLegibility;
 	 font-family: 'Source Sans Pro', sans-serif;
 	 font-weight: 400;
-	 background-image: url('https://s17.postimg.org/fr01hfe33/image.jpg');
-	 background-size: cover;
-	 background-repeat: none;
 }
  .wrapper {
 	 width: 100%;
@@ -193,15 +190,16 @@
 	 border-width: 1px 1px 1px 0;
 	 border-style: solid;
 	 border-color: #e6e6e6;
-	 height: calc(100% - 148px);
+	 height: 100%;
 	 flex-direction: column;
 }
  .container .right .chat-body .chat.active-chat {
 	 display: flex;
+	 height: 610px;
 }
  .container .right .write {
 	 position: absolute;
-	 bottom: 60px;
+	 bottom: 175px;
 	 left: 30px;
 	 height: 42px;
 	 padding-left: 8px;
@@ -245,13 +243,16 @@
 	 background-position: center;
 }
  .container .right .write .write-link.send {
-	 display: inline-block;
-	 float: right;
-	 width: 20px;
-	 height: 42px;
-	 margin-right: 11px;
-	 content: '';
-   cursor: pointer;
+	display: inline-block;
+	float: right;
+	width: 20px;
+	height: 27px;
+	margin-left: 1px;
+	content: '';
+   	cursor: pointer;
+}
+.container .right .write button{
+	margin-left: 6%;
 }
  .container .right .bubble {
 	 font-size: 16px;
@@ -317,6 +318,15 @@
 }
  .container .right .conversation-start span:after {
 	 right: 0;
+}
+#users {
+	float: left;
+	width: 78%;
+}
+
+#room button {
+	margin-left: 1%;
+	height: 100px;
 }
  @keyframes slideFromLeft {
 	 0% {

@@ -80,24 +80,25 @@ $("#message").submit((event) => {
 
   if (rooms && roomId) {
     socket.emit("send-message", { roomId: roomId, message: message });
+    $("#text-message").empty();
   } else {
     alert("falha ao enviar mensagem");
   }
 });
 
-/* $(".chat[data-chat=person2]").addClass("active-chat");
-$(".person[data-chat=person2]").addClass("active"); */
-
 function onInit() {
   if (localStorage.getItem("username")) {
     $(".container-form ").removeClass("display-block").addClass("display-none");
     $(".container").removeClass("display-none").addClass("display-block");
+    $(".right .top").removeClass("display-block").addClass("display-none");
+    $(".right .write").removeClass("display-block").addClass("display-none");
     let rooms = localStorage.getItem("rooms");
     if (rooms) {
       rooms = JSON.parse(rooms);
       $(".people").empty();
       $.each(rooms, function (i, item) {
         renderRoom(item);
+        renderMessages(item);
       });
       setEvents();
     }
@@ -118,8 +119,13 @@ function setEvents() {
       $(".chat").removeClass("active-chat");
       $(".left .person").removeClass("active");
       $(this).addClass("active");
+      $(".right .top").removeClass("display-none").addClass("display-block");
+      $(".right .write").removeClass("display-none").addClass("display-block");
       $(".chat[data-chat = " + findChat + "]").addClass("active-chat");
-      /* $(".active-chat").scrollTop($(".active-chat")[0].scrollHeight); */
+      $(".active-chat").animate(
+        { scrollTop: $(".active-chat")[0].scrollHeight },
+        100
+      );
     }
   });
 }
@@ -133,7 +139,9 @@ function renderRoom(room) {
       </svg>
       <span class="name">${room.name}</span>
       <span class="time">2:09 PM</span>
-      <span class="preview">I was wondering...</span>
+      <span class="preview">${
+        room.messages.length > 0 ? room.messages[0].text : ""
+      }...</span>
     </li>
   `);
   $(".right .chat-body").empty();
@@ -183,18 +191,15 @@ function joinRoom(room) {
 }
 
 socket.on("active-users", (users) => {
+  $("#users").find("option").remove();
   $.each(users, function (i, item) {
     if (item.username !== localStorage.getItem("username")) {
-      $("#users")
-        .find("option")
-        .remove()
-        .end()
-        .append(
-          $("<option>", {
-            value: item.id,
-            text: item.username,
-          })
-        );
+      $("#users").append(
+        $("<option>", {
+          value: item.id,
+          text: item.username,
+        })
+      );
     }
   });
 });
