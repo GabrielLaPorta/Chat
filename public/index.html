@@ -18,9 +18,9 @@
             <h1 class="center">Chat Gabriel - Sistemas Distribuidos</h1>
         </div>
     </div>
-    <div class="wrapper">
+    <div class="wrapper border">
         <div class="container-form">
-            <form id="user">
+            <form id="user" class="border">
                 <div class="row">                    
                     <div class="col-4 offset-3">
                         <input class="form-control" type="text" name="username", placeholder="Digite seu usuário">
@@ -45,17 +45,7 @@
                         </button>
                     </form>
                 </div>
-                <ul class="people">
-                    <!-- <li class="person" data-chat="person1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                        </svg>
-                        <span class="name">Thomas Bangalter</span>
-                        <span class="time">2:09 PM</span>
-                        <span class="preview">I was wondering...</span>
-                    </li> -->
-                </ul>
+                <ul class="people"></ul>
             </div>
             <div class="right">
                 <div class="top"><span>To: <span class="name"></span></span></div>
@@ -74,42 +64,6 @@
         </div>
     </div>
     <script type="text/javascript" src="index.js"></script>
-   <!--  <script type="text/javascript">
-        const socket = io(/* 'https://chat-do-gabriel.herokuapp.com/' || */ 'http://localhost:5000');
-
-        $('input[name=username]').val(localStorage.getItem('username'))
-
-        function renderMessage(message) {
-            $('.messages').append('<div class="message"><strong>'+ message.author +'</strong>: '+ message.message +'</div>')
-        }
-
-        $('#chat').submit((event) => {
-            event.preventDefault();
-
-            let author = $('input[name=username]').val();
-            let message = $('input[name=message]').val();
-            localStorage.setItem('username', author);
-            if(author.length && message.length){
-                let messageObject = {
-                    author: author,
-                    message: message,
-                };
-                renderMessage(messageObject);
-
-                socket.emit('sendMessage', messageObject);
-            }
-            $('input[name=message]').val('')
-        });
-
-        socket.on('previousMessages', (messages) =>{
-            messages.forEach(message => {
-                renderMessage(message);                
-            });
-        })
-
-        socket.on('receivedMessage', (message) =>{
-            renderMessage(message);
-        })        
-    </script> -->
+   
 </body>
 </html>

@@ -80,7 +80,7 @@ $("#message").submit((event) => {
 
   if (rooms && roomId) {
     socket.emit("send-message", { roomId: roomId, message: message });
-    $("#text-message").empty();
+    $("#text-message").val("");
   } else {
     alert("falha ao enviar mensagem");
   }
