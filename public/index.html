@@ -8,18 +8,74 @@
      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.socket.io/4.4.0/socket.io.min.js" integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj" crossorigin="anonymous"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Chat Gabriel - Sistemas Distribuidos</h1>
-    <form id="chat">
-        <input type="text" name="username", placeholder="Digite seu usuário">
-        <div class="messages"></div>
-        <input type="text" name="message", placeholder="Digite sua mensagem">
-        <button type="submit">Enviar</button>
-    </form>
-    <script type="text/javascript">
-        const socket = io('https://chat-do-gabriel.herokuapp.com/' || 'http://localhost:5000');
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h1 class="center">Chat Gabriel - Sistemas Distribuidos</h1>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="container-form">
+            <form id="user">
+                <div class="row">                    
+                    <div class="col-4 offset-3">
+                        <input class="form-control" type="text" name="username", placeholder="Digite seu usuário">
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-primary" type="submit">Entrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="container">
+            <div class="left">
+                <div class="top">
+                    <form id="room">
+                        <h3>Usuários Online</h3>
+                        <select id="users" class="form-select" multiple aria-label="multiple select example" width="240px">
+                        </select>
+                        <button class="btn btn-primary" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-plus-fill" width="30" height="30" viewBox="0 0 16 16">
+                                <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+                <ul class="people">
+                    <!-- <li class="person" data-chat="person1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                        <span class="name">Thomas Bangalter</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">I was wondering...</span>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="right">
+                <div class="top"><span>To: <span class="name"></span></span></div>
+                <div class="chat-body"></div>
+                <div class="write">
+                    <form id="message">
+                        <input type="text" id="text-message"/>
+                        <button class="btn btn-primary" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-arrow-right-short write-link send" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
+   <!--  <script type="text/javascript">
+        const socket = io(/* 'https://chat-do-gabriel.herokuapp.com/' || */ 'http://localhost:5000');
 
         $('input[name=username]').val(localStorage.getItem('username'))
 
@@ -54,6 +110,6 @@
         socket.on('receivedMessage', (message) =>{
             renderMessage(message);
         })        
-    </script>
+    </script> -->
 </body>
 </html>
